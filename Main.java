@@ -12,15 +12,30 @@ public class Main {
         Random nNum = new Random();
 
         System.out.println("Hello! What is your name?");
-        String pInput = input.next();
+        String pInput = "name";
+
+        while(!x) {
+            pInput = input.next();
+            System.out.println(pInput);
+            try {
+                int check = Integer.parseInt(pInput);
+                if(check >= -9){
+                    x = false;
+                    System.out.println("Type letters from a-z.");
+                }
+            } catch (NumberFormatException e) {
+                x = true;
+            }
+        }
 
         System.out.print("Well," + pInput + ", I am thinking of a number between 1 and 20 \nTake a guess.");
 
-        //input.nextInt();
         int num = 0;
         num = nNum.nextInt(20);
-        int numInput = input.nextInt();
-        while (!x) {
+        try {
+            x = false;
+            int numInput = input.nextInt();
+            while (!x) {
                 if (numInput > num) {
                     System.out.print("Your guess is too high.\nTake a guess.");
                     numInput = input.nextInt();
@@ -29,8 +44,7 @@ public class Main {
                     System.out.print("Your guess is too low.\nTake a guess.");
                     numInput = input.nextInt();
                     guesses++;
-                }
-                else {
+                } else {
                     System.out.print("Good Job," + pInput + ", You guessed my number in " + guesses + "!\nWould you like to play again? (y or n)");
                     String answer = input.next();
                     if (answer.charAt(0) == 'n') {
@@ -42,5 +56,9 @@ public class Main {
                     }
                 }
             }
+        } catch (Exception e) {
+            System.out.println("Please input a number.");
+            nNum.nextInt();
+        }
     }
 }
