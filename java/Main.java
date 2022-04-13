@@ -1,3 +1,4 @@
+import java.io.InputStream;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,6 +6,9 @@ import static java.lang.System.exit;
 
 public class Main {
     public static void main(String[] args) {
+        start(System.in, args);
+    }
+    public static void start(InputStream in, String[] args) {
 
         boolean x = false;
         int guesses = 0;
